@@ -30,7 +30,7 @@ var getBalanceFactor = function(clientAccount) {
         factor = 25;
     else if (clientAccount.balance < 3000)
         factor = 65;
-    else if ( clientAccount.balance < 5000)
+    else if (clientAccount.balance < 5000)
         factor = 150;
 
     return factor;
@@ -51,7 +51,6 @@ var accountStatus = function(clientAccount) {
         return "good.";
   	else
         return "excellent";
-
 }
 
 var creditStatus = function (clientAccount,creditCheckMode) {
