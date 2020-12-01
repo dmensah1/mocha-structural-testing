@@ -93,8 +93,8 @@ exports.orderHandling = function(clientAccount ,product,inventory,inventoryThres
     var cStatus = exports.creditStatus(clientAccount, creditCheckMode);
     var pStatus = exports.productStatus(product,inventory,inventoryThreshold);
 
-   if ((aStautus==="invalid"||cStatus==="invalid"||pStatus!= "invalid")|| 
-   (aStautus==="acceptable" &&  cStatus==="adverse" && pStatus!="available") ||     
+   if ((aStautus==="invalid"||cStatus==="invalid"|| pStatus === "invalid")|| 
+   (aStautus==="acceptable" &&  cStatus==="adverse" && pStatus != "available") ||     
    (aStautus==="adverse" && cStatus==="good" && pStatus==="soldout") || 
    (aStautus==="adverse" && cStatus==="adverse" ))
         return "rejected";
