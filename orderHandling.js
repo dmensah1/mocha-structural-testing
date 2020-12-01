@@ -1,4 +1,4 @@
-exports.getAgeFactor = function(clientAccount) { 
+var getAgeFactor = function(clientAccount) { 
     var factor ;
 
     if (clientAccount.age <18 || clientAccount.age >=95)
@@ -17,7 +17,7 @@ exports.getAgeFactor = function(clientAccount) {
     return factor;
 }
 
-exports.getBalanceFactor = function(clientAccount) {    
+var getBalanceFactor = function(clientAccount) {    
     var factor;
 
     if (clientAccount.balance <= 0 || clientAccount.balance >= 5000)
@@ -88,7 +88,7 @@ var productStatus = function(product,inventory,inventoryThreshold) {
 }
 
 
-var orderHandling = function(clientAccount ,product,inventory,inventoryThreshold,creditCheckMode) {
+exports.orderHandling = function(clientAccount ,product,inventory,inventoryThreshold,creditCheckMode) {
     var aStautus=accountStatus(clientAccount);
     var cStatus=creditStatus(clientAccount, creditCheckMode);
     var pStatus=productStatus(product,inventory,inventoryThreshold);
