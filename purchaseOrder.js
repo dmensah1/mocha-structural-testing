@@ -36,24 +36,24 @@ exports.getBalanceFactor = function(clientAccount) {
     return factor;
 }
 
-var accountStatus = function(clientAccount) {
-    var factor1 = getAgeFactor(clientAccount);
-    var factor2 = getBalanceFactor(clientAccount);
+exports.accountStatus = function(clientAccount) {
+    var factor1 = exports.getAgeFactor(clientAccount);
+    var factor2 = exports.getBalanceFactor(clientAccount);
     var factor3 = factor1 * factor2;
 
-    if (factor3 = 0)
+    if (factor3 == 0)
         return "invalid";
     else if (factor3 < 150)
-        return "adverse.";
+        return "adverse";
    	else if (factor3 < 600)
         return "acceptable";
     else if (factor3 < 1000)
-        return "good.";
+        return "good";
   	else
         return "excellent";
 }
 
-var creditStatus = function (clientAccount,creditCheckMode) {
+exports.creditStatus = function (clientAccount,creditCheckMode) {
     var scoreThreshold;
 
     if (clientAccount.creditScore <0 || clientAccount.creditScore >100)
@@ -70,12 +70,12 @@ var creditStatus = function (clientAccount,creditCheckMode) {
         return "good";
 }
 
-var productStatus = function(product,inventory,inventoryThreshold) { 
+exports.productStatus = function(product,inventory,inventoryThreshold) { 
     var q;
 
     for (i=0;i<=inventory.length;i++) {
         if (product == inventory[i].name) {
-            q=inventory[i].q;
+            q=inventory[i].quantity;
           	if (q==0)
               return "soldout";
             else if (q < inventoryThreshold)
@@ -88,10 +88,10 @@ var productStatus = function(product,inventory,inventoryThreshold) {
 }
 
 
-var orderHandling = function(clientAccount ,product,inventory,inventoryThreshold,creditCheckMode) {
-    var aStautus=accountStatus(clientAccount);
-    var cStatus=creditStatus(clientAccount, creditCheckMode);
-    var pStatus=productStatus(product,inventory,inventoryThreshold);
+exports.orderHandling = function(clientAccount ,product,inventory,inventoryThreshold,creditCheckMode) {
+    var aStautus = exports.accountStatus(clientAccount);
+    var cStatus = exports.creditStatus(clientAccount, creditCheckMode);
+    var pStatus = exports.productStatus(product,inventory,inventoryThreshold);
 
    if ((aStautus==="invalid"||cStatus==="invalid"||pStatus!= "invalid")|| 
    (aStautus==="acceptable" &&  cStatus==="adverse" && pStatus!="available") ||     

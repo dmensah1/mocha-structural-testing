@@ -1,7 +1,6 @@
 var assert = require('assert');
 var fn = require('./purchaseOrder');
-var fn2 = require('./statusHandling');
-var fn3 = require('./orderHandling');
+
 
 var clientAccount = [
     {
@@ -115,45 +114,45 @@ describe('getBalanceFactor() Structural Test Suite', function() {
 
 describe('getAccountStatus() Structural Test Suite', function() {
     it('Path 1, age=10 balance=-1, invalid', function(){
-        assert.equal(fn2.accountStatus(clientAccount2[0]), 'invalid'); 
+        assert.equal(fn.accountStatus(clientAccount2[0]), 'invalid'); 
     });
     it('Path 2, age=23 balance=50, adverse', function(){
-        assert.equal(fn2.accountStatus(clientAccount2[1]), 'adverse'); 
+        assert.equal(fn.accountStatus(clientAccount2[1]), 'adverse'); 
     });
     it('Path 3, age=32 balance=650, acceptable', function(){
-        assert.equal(fn2.accountStatus(clientAccount2[2]), 'acceptable'); 
+        assert.equal(fn.accountStatus(clientAccount2[2]), 'acceptable'); 
     });
     it('Path 4, age=23 balance=2500, good', function(){
-        assert.equal(fn2.accountStatus(clientAccount2[3]), 'good'); 
+        assert.equal(fn.accountStatus(clientAccount2[3]), 'good'); 
     });
     it('Path 5, age=42 balance=4500, excellent', function(){
-        assert.equal(fn2.accountStatus(clientAccount2[4]), 'excellent'); 
+        assert.equal(fn.accountStatus(clientAccount2[4]), 'excellent'); 
     });
 });
 
 describe('getCreditStatus() Structural Test Suite', function() {
     it('Path 1, creditScore=-5, invalid', function() {
-        assert.equal(fn2.creditStatus(clientAccount2[0], "strict"), 'invalid');
+        assert.equal(fn.creditStatus(clientAccount2[0], "strict"), 'invalid');
     });
     it('Path 2, creditChekMode=strict creditScore=50, adverse', function() {
-        assert.equal(fn2.creditStatus(clientAccount2[1], "strict"), 'adverse');
+        assert.equal(fn.creditStatus(clientAccount2[1], "strict"), 'adverse');
     });
     it('Path 3, creditChekMode=default creditScore=-5, good', function() {
-        assert.equal(fn2.creditStatus(clientAccount2[2], "default"), 'good');
+        assert.equal(fn.creditStatus(clientAccount2[2], "default"), 'good');
     });
 });
 
 describe('getProductStatus() Structural Test Suite', function() {
     it('Path 2 quantity = 0, soldout', function() {
-        assert.equal(fn2.productStatus('shoes', inventory, 75), 'soldout');
+        assert.equal(fn.productStatus('shoes', inventory, 75), 'soldout');
     });
     it('Path 3 quantity = 50, limited', function() {
         inventory[0].quantity = 50;
-        assert.equal(fn2.productStatus('shoes', inventory, 75), 'limited');
+        assert.equal(fn.productStatus('shoes', inventory, 75), 'limited');
     });
     it('Path 2 quantity = 100, available', function() {
         inventory[0].quantity = 100;
-        assert.equal(fn2.productStatus('shoes', inventory, 75), 'available');
+        assert.equal(fn.productStatus('shoes', inventory, 75), 'available');
     });
 });
 
