@@ -60,6 +60,11 @@ var clientAccount2 = [
         age: "42",
         balance: "4500",
         creditScore: 50
+    },
+    {
+        age: "32",
+        balance: "650",
+        creditScore: 50
     }
 ];
 
@@ -156,3 +161,61 @@ describe('getProductStatus() Structural Test Suite', function() {
     });
 });
 
+describe('orderHandling() Structural Test Suite', function() {
+    describe('Statement Coverage Tests', function() {
+        it('Statement B test, rejected', function() {
+            inventory[0].quantity = 0;
+            assert.equal(fn.orderHandling(clientAccount[1], 'shoes', inventory, 75, 'strict'), 'rejected');
+        });
+        it('Statement D test, accepted', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'accepted');
+        });
+        it('Statement F test, underReview', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[5], 'shoes', inventory, 75, 'strict'), 'underReview');
+        });
+        it('Statement H test, pending', function() {
+            inventory[0].quantity = 50;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'pending');
+        });
+    });
+
+    describe('Branch Coverage Tests', function() {
+        it('Branch 1 test, rejected', function() {
+            inventory[0].quantity = 0;
+            assert.equal(fn.orderHandling(clientAccount[1], 'shoes', inventory, 75, 'strict'), 'rejected');
+        });
+        it('Branch 2 test, accepted', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'accepted');
+        });
+        it('Branch 3 test, underReview', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[5], 'shoes', inventory, 75, 'strict'), 'underReview');
+        });
+        it('Branch 4 test, pending', function() {
+            inventory[0].quantity = 50;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'pending');
+        });
+    });
+
+    describe('Path Coverage Tests', function() {
+        it('Path 1 test, rejected', function() {
+            inventory[0].quantity = 0;
+            assert.equal(fn.orderHandling(clientAccount[1], 'shoes', inventory, 75, 'strict'), 'rejected');
+        });
+        it('Path 2 test, accepted', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'accepted');
+        });
+        it('Path 3 test, underReview', function() {
+            inventory[0].quantity = 100;
+            assert.equal(fn.orderHandling(clientAccount2[5], 'shoes', inventory, 75, 'strict'), 'underReview');
+        });
+        it('Path 4 test, pending', function() {
+            inventory[0].quantity = 50;
+            assert.equal(fn.orderHandling(clientAccount2[2], 'shoes', inventory, 75, 'strict'), 'pending');
+        });
+    });
+});

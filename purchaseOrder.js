@@ -103,7 +103,6 @@ exports.orderHandling = function(clientAccount ,product,inventory,inventoryThres
     (aStautus === "acceptable" && cStatus==="good" && 	pStatus==="available"))
         return "accepted";
 
-
     else if ((aStautus==="good" && cStatus ==="adverse")||(aStautus==="acceptable" && cStatus==="adverse"
     && pStatus==="available"))
         return "underReview";
@@ -111,5 +110,4 @@ exports.orderHandling = function(clientAccount ,product,inventory,inventoryThres
     else if ((aStautus ==="acceptable" && cStatus==="good" && pStatus!="available")
     ||(aStautus==="adverse" && cStatus==="good" && pStatus==="limited"))
         return "pending";
-
 }
