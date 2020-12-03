@@ -155,7 +155,7 @@ describe('getProductStatus() Structural Test Suite', function() {
         inventory[0].quantity = 50;
         assert.equal(fn.productStatus('shoes', inventory, 75), 'limited');
     });
-    it('Path 2 quantity = 100, available', function() {
+    it('Path 4 quantity = 100, available', function() {
         inventory[0].quantity = 100;
         assert.equal(fn.productStatus('shoes', inventory, 75), 'available');
     });

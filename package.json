@@ -5,10 +5,11 @@
   "main": "test.js",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha --timeout=3000"
   },
   "repository": {
     "type": "git",
