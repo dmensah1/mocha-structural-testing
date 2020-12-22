@@ -1,2 +1,2 @@
 # mocha-structural-testing
-Structural testing using mocha framework.
+Structural unit testing using mocha framework.
